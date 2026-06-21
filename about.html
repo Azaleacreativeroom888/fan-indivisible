@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Ajna's Shrine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red:    #C0392B;
+      --gold:   #D4A017;
+      --teal:   #1A7A7A;
+      --cream:  #FDF6E3;
+      --dark:   #1C1008;
+      --accent: #E8732A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background-color: var(--dark);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(180deg, #0d0703 0%, var(--dark) 100%);
+      border-bottom: 2px solid var(--gold);
+      overflow: hidden;
+    }
+
+    header::before, header::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(212,160,23,0.15);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: spin 30s linear infinite;
+    }
+    header::before { width: 500px; height: 500px; }
+    header::after  { width: 700px; height: 700px; animation-direction: reverse; }
+
+    @keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+    .site-name {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: clamp(22px, 5vw, 46px);
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-shadow: 0 0 30px rgba(212,160,23,0.4);
+      position: relative;
+      z-index: 1;
+    }
+
+    .site-subtitle {
+      font-size: 13px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    nav a {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(253,246,227,0.6);
+      text-decoration: none;
+      padding: 4px 0;
+      border-bottom: 1px solid transparent;
+      transition: color .25s, border-color .25s;
+    }
+    nav a.active { color: var(--gold); border-color: var(--gold); }
+    nav a:hover { color: var(--gold); border-color: var(--gold); }
+
+    /* ── PAGE TITLE ── */
+    .page-title {
+      max-width: 640px;
+      margin: 50px auto 0;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .page-title h1 {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 20px;
+      color: var(--gold);
+      letter-spacing: 3px;
+    }
+    .page-title p {
+      margin-top: 10px;
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(253,246,227,0.5);
+    }
+
+    /* ── MAIN ── */
+    .main-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 50px 24px 90px;
+    }
+
+    /* ── INTRO TEXT ── */
+    .intro-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(212,160,23,0.2);
+      border-radius: 2px;
+      padding: 28px 32px;
+      line-height: 2;
+      font-size: 14px;
+      color: rgba(253,246,227,0.8);
+      margin-bottom: 56px;
+    }
+    .intro-block p + p { margin-top: 14px; }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 12px;
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(212,160,23,0.4), transparent);
+    }
+
+    /* ── LINK GRID ── */
+    .link-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 50px;
+    }
+    @media (max-width: 560px) { .link-grid { grid-template-columns: 1fr; } }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 2px;
+      padding: 14px 16px;
+      position: relative;
+      overflow: hidden;
+      transition: background .25s, border-color .25s, transform .2s;
+    }
+
+    .link-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent), transparent);
+    }
+
+    .link-card:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(212,160,23,0.4);
+      transform: translateY(-2px);
+    }
+
+    .link-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(212,160,23,0.08);
+      border: 1px solid rgba(212,160,23,0.2);
+      border-radius: 2px;
+    }
+
+    .link-text { flex: 1; min-width: 0; }
+
+    .link-name {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 2px;
+    }
+
+    .link-desc {
+      display: block;
+      font-size: 11px;
+      color: rgba(253,246,227,0.45);
+      line-height: 1.5;
+    }
+
+    .link-arrow {
+      font-size: 16px;
+      color: rgba(212,160,23,0.3);
+      flex-shrink: 0;
+      transition: color .25s, transform .25s;
+    }
+    .link-card:hover .link-arrow {
+      color: var(--gold);
+      transform: translateX(3px);
+    }
+
+    /* ── FORM ── */
+    .form-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(212,160,23,0.2);
+      border-radius: 2px;
+      padding: 30px 32px;
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .form-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--gold), transparent);
+    }
+
+    .form-intro {
+      font-size: 13px;
+      color: rgba(253,246,227,0.6);
+      line-height: 1.9;
+      margin-bottom: 24px;
+    }
+
+    .form-group { margin-bottom: 18px; }
+
+    .form-label {
+      display: block;
+      font-size: 11px;
+      color: var(--teal);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+      font-family: 'Cinzel Decorative', cursive;
+    }
+
+    .required { color: var(--red); font-style: normal; }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(212,160,23,0.25);
+      border-radius: 2px;
+      color: var(--cream);
+      font-family: 'Lora', serif;
+      font-size: 14px;
+      padding: 10px 14px;
+      outline: none;
+      transition: border-color .25s, box-shadow .25s;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder { color: rgba(253,246,227,0.25); }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 10px rgba(212,160,23,0.15);
+    }
+
+    .form-textarea { resize: vertical; min-height: 130px; }
+
+    .field-error {
+      display: block;
+      font-size: 11px;
+      color: var(--red);
+      margin-top: 5px;
+    }
+
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212,160,23,0.1);
+      border: 1px solid rgba(212,160,23,0.45);
+      border-radius: 2px;
+      color: var(--gold);
+      font-family: 'Lora', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      padding: 11px 26px;
+      cursor: pointer;
+      transition: all .25s;
+      margin-top: 6px;
+    }
+    .form-submit:hover {
+      background: rgba(212,160,23,0.2);
+      box-shadow: 0 0 14px rgba(212,160,23,0.2);
+    }
+    .form-submit:disabled { opacity: .5; cursor: not-allowed; }
+
+    .form-success {
+      background: rgba(26,122,122,0.15);
+      border: 1px solid rgba(26,122,122,0.4);
+      border-radius: 2px;
+      padding: 16px 20px;
+      text-align: center;
+      color: var(--teal);
+      font-size: 13px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .form-success-icon {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 6px;
+      color: var(--gold);
+    }
+
+    .form-error-global {
+      background: rgba(192,57,43,0.15);
+      border: 1px solid rgba(192,57,43,0.4);
+      border-radius: 2px;
+      padding: 12px 16px;
+      color: var(--red);
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid rgba(212,160,23,0.2);
+      padding: 30px 20px;
+      text-align: center;
+    }
+    footer p {
+      font-size: 11px;
+      color: rgba(253,246,227,0.3);
+      line-height: 1.9;
+      max-width: 600px;
+      margin: 0 auto 6px;
+    }
+    footer span { color: var(--red); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="site-name">Ajna's Shrine</div>
+  <div class="site-subtitle">Indivisible Fan Log</div>
+  <nav>
+    <a href="index.html">HOME</a>
+    <a href="blog.html">BLOG</a>
+    <a href="gallery.html">GALLERY</a>
+    <a href="about.html" class="active">ABOUT</a>
+  </nav>
+</header>
+
+<div class="page-title">
+  <h1>About</h1>
+  <p>このサイトについて</p>
+</div>
+
+<main class="main-wrap">
+
+  <div class="intro-block">
+    <p>はじめまして。このサイトは『Indivisible』が好きすぎて作った非公式の個人ファンサイトです。</p>
+    <p>正しい考察よりも「このシーンが好き」「この表情がたまらない」という気持ちを大事にしながら、イラストや漫画、日々の雑記を置いていきます。</p>
+    <p>普段は漫画やイラストを中心に創作活動をしています。よければ下記のリンクからも遊びにきてください。</p>
+  </div>
+
+  <p class="section-label">作者のサイト・SNS</p>
+  <div class="link-grid">
+
+    <a class="link-card" href="https://www.pixiv.net/users/105728284" target="_blank" rel="noopener">
+      <div class="link-icon">🎨</div>
+      <div class="link-text">
+        <span class="link-name">Pixiv</span>
+        <span class="link-desc">イラスト・二次創作</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://rookie.shonenjump.com/users/14728546961183734555" target="_blank" rel="noopener">
+      <div class="link-icon">📚</div>
+      <div class="link-text">
+        <span class="link-name">ジャンプルーキー</span>
+        <span class="link-desc">オリジナル漫画</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://bsky.app/profile/azaleaazalea88.bsky.social" target="_blank" rel="noopener">
+      <div class="link-icon">🦋</div>
+      <div class="link-text">
+        <span class="link-name">Bluesky</span>
+        <span class="link-desc">近況・お知らせ</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://kakuyomu.jp/users/azalea_azalea72" target="_blank" rel="noopener">
+      <div class="link-icon">✒️</div>
+      <div class="link-text">
+        <span class="link-name">カクヨム</span>
+        <span class="link-desc">小説掲載</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://www.youtube.com/@LilyPopins0512" target="_blank" rel="noopener">
+      <div class="link-icon">🎬</div>
+      <div class="link-text">
+        <span class="link-name">YouTube（リリポピ）</span>
+        <span class="link-desc">動画チャンネル</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+    <a class="link-card" href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">
+      <div class="link-icon">✦</div>
+      <div class="link-text">
+        <span class="link-name">Azalea72の創作部屋</span>
+        <span class="link-desc">メインサイト・他の創作サイトまとめ</span>
+      </div>
+      <span class="link-arrow">›</span>
+    </a>
+
+  </div>
+
+  <p class="section-label">お問い合わせ</p>
+
+  <div class="form-card">
+    <p class="form-intro">ご感想・ご質問などありましたらこちらからどうぞ。<br>Gmailで受け取り、返信いたします。</p>
+
+    <div data-fs-success class="form-success" style="display:none;">
+      <span class="form-success-icon">✦</span>
+      <p>メッセージを送信しました。ありがとうございます！</p>
+    </div>
+
+    <div data-fs-error class="form-error-global" style="display:none;"></div>
+
+    <form id="contact-form" action="https://formspree.io/f/maqvpvoz" method="POST">
+
+      <div class="form-group">
+        <label class="form-label" for="name">お名前</label>
+        <input class="form-input" type="text" id="name" name="name" placeholder="Ajna">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">メールアドレス <span class="required">*</span></label>
+        <input class="form-input" type="email" id="email" name="email" data-fs-field placeholder="example@email.com" required>
+        <span data-fs-error="email" class="field-error"></span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="message">メッセージ <span class="required">*</span></label>
+        <textarea class="form-textarea" id="message" name="message" data-fs-field placeholder="メッセージを入力してください…" rows="6" required></textarea>
+        <span data-fs-error="message" class="field-error"></span>
+      </div>
+
+      <button class="form-submit" type="submit" data-fs-submit-btn>
+        📮 送信する
+      </button>
+
+    </form>
+  </div>
+
+</main>
+
+<footer>
+  <p>当サイトに掲載されている画像・文章・作品について、AI学習への利用、トレース、無断転載・転載、二次利用を禁止します。</p>
+  <p>© Ajna's Shrine — Fan Site. <span>♥</span> Not affiliated with Lab Zero Games / 505 Games.</p>
+</footer>
+
+<script>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#contact-form', formId: 'maqvpvoz' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+</body>
+</html>
